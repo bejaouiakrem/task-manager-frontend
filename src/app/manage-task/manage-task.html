@@ -1,0 +1,63 @@
+<div class="container">
+  <h2>Tasks for Project #{{ projectId }}</h2>
+
+  <!-- Create Task Form -->
+  <form *ngIf="!isEditing" (ngSubmit)="createTask()" #createForm="ngForm" class="task-form">
+    <input type="text" name="title" [(ngModel)]="newTask.title" required placeholder="Title" title="Title" />
+    <input type="text" name="description" [(ngModel)]="newTask.description" placeholder="Description" title="Description" />
+    <select name="priority" [(ngModel)]="newTask.priority" required title="Priority">
+      <option value="" disabled selected>Priority</option>
+      <option *ngFor="let p of priorities" [value]="p">{{ p }}</option>
+    </select>
+    <select name="status" [(ngModel)]="newTask.status" required title="Status">
+      <option value="" disabled selected>Status</option>
+      <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+    </select>
+    <button type="submit" [disabled]="createForm.invalid">➕ Add Task</button>
+  </form>
+
+  <!-- Edit Task Form -->
+  <form *ngIf="isEditing" (ngSubmit)="updateTask()" #editForm="ngForm" class="task-form">
+    <input type="text" name="title" [(ngModel)]="editTask.title" required placeholder="Title" title="Title" />
+    <input type="text" name="description" [(ngModel)]="editTask.description" placeholder="Description" title="Description" />
+    <select name="priority" [(ngModel)]="editTask.priority" required title="Priority">
+      <option *ngFor="let p of priorities" [value]="p">{{ p }}</option>
+    </select>
+    <select name="status" [(ngModel)]="editTask.status" required title="Status">
+      <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+    </select>
+    <button type="submit" [disabled]="editForm.invalid">💾 Save</button>
+    <button type="button" (click)="cancelEdit()">❌ Cancel</button>
+  </form>
+
+  <div *ngIf="isLoading">Loading tasks...</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <table *ngIf="!isLoading && tasks.length" class="task-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>creator</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.priority }}</td>
+        <td>{{ task.ownerUsername }}</td>
+        <td>
+          <button (click)="startEdit(task)" title="Edit">✏️</button>
+          <button (click)="deleteTask(task.id_tache)" title="Delete">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="!isLoading && tasks.length === 0">No tasks found.</p>
+</div>

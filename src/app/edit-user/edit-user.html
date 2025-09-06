@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Edit User: {{ user?.username }}</h2>
+            <p class="card-subtitle">Update user information</p>
+        </div>
+
+        <div class="card-content">
+            @if (isLoading) {
+            <div class="spinner-container">
+                <div class="spinner"></div>
+                <p>Loading user data...</p>
+            </div>
+            } @else if (error) {
+            <div class="error-message">
+                <span class="error-icon">⚠️</span>
+                <span>{{ error }}</span>
+            </div>
+            } @else {
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="user-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        id="email"
+                        type="email" 
+                        formControlName="email" 
+                        required 
+                        placeholder="Enter user's email"
+                        [class.error]="form.get('email')?.invalid && form.get('email')?.touched"
+                        aria-label="Email">
+                    @if (form.get('email')?.hasError('required') && form.get('email')?.touched) {
+                    <span class="error-text">Email is required</span>
+                    }
+                    @if (form.get('email')?.hasError('email') && form.get('email')?.touched) {
+                    <span class="error-text">Please enter a valid email</span>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="role">User Role</label>
+                    <select 
+                        id="role"
+                        formControlName="role" 
+                        required
+                        [class.error]="form.get('role')?.invalid && form.get('role')?.touched"
+                        aria-label="User role">
+                        <option value="" disabled selected>Select a role</option>
+                        <option value="USER">User</option>
+                        <option value="ADMIN">Admin</option>
+                        <option value="PROJECT_MANAGER">Project Manager</option>
+                    </select>
+                    @if (form.get('role')?.hasError('required') && form.get('role')?.touched) {
+                    <span class="error-text">Role is required</span>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Account Status</label>
+                    <select 
+                        id="status"
+                        formControlName="enabled" 
+                        required
+                        [class.error]="form.get('enabled')?.invalid && form.get('enabled')?.touched"
+                        aria-label="User status">
+                        <option value="" disabled selected>Select status</option>
+                        <option [value]="true">Enabled</option>
+                        <option [value]="false">Disabled</option>
+                    </select>
+                    @if (form.get('enabled')?.hasError('required') && form.get('enabled')?.touched) {
+                    <span class="error-text">Status is required</span>
+                    }
+                </div>
+
+                <div class="form-actions">
+                    <button 
+                        type="submit" 
+                        class="btn btn-primary"
+                        [disabled]="form.invalid || isSubmitting">
+                        @if (isSubmitting) {
+                        <span class="btn-spinner"></span>
+                        } 
+                        Update User
+                    </button>
+                    <button 
+                        type="button" 
+                        class="btn btn-secondary"
+                        (click)="cancel()" 
+                        [disabled]="isSubmitting">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+            }
+        </div>
+    </div>
+</div>

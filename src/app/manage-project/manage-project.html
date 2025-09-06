@@ -1,0 +1,248 @@
+<div class="container">
+    <h2>My Projects</h2>
+
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <button *ngIf="canCreateProjects" class="btn-create" (click)="showCreateForm = true">
+        + Create New Project
+    </button>
+
+    <!-- Create Project Form -->
+    <div *ngIf="showCreateForm" class="create-form">
+        <h3>Create New Project</h3>
+
+        <form [formGroup]="projectForm">
+            <div class="form-group">
+                <label>Project Name *</label>
+                <input type="text" formControlName="name" title="Project name" placeholder="Enter project name"
+                    aria-label="Project name">
+                <div *ngIf="projectForm.get('name')?.invalid && projectForm.get('name')?.touched"
+                    class="validation-error">
+                    Project name is required (min 3 characters)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea formControlName="description" aria-label="Project description"></textarea>
+                <div *ngIf="projectForm.get('description')?.invalid && projectForm.get('description')?.touched"
+                    class="validation-error">
+                    Description cannot exceed 500 characters
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Category *</label>
+                <select formControlName="categorieId" title="Select project category">
+                    <option [value]="null" disabled>Select a category</option>
+                    <option *ngFor="let cat of categories" [value]="cat.id">
+                        {{ cat.name }}
+                    </option>
+                </select>
+                <div *ngIf="projectForm.get('categorieId')?.invalid && projectForm.get('categorieId')?.touched"
+                    class="validation-error">
+                    Category is required
+                </div>
+            </div>
+
+            <div class="form-group" *ngIf="users.length">
+                <label>Collaborators</label>
+                <div class="collaborator-list">
+                    <div *ngFor="let user of users" class="collaborator-item">
+                        <label>
+                            <input type="checkbox" [value]="user.id" (change)="toggleCollaborator(user.id)"
+                                [checked]="isCollaboratorSelected(user.id)">
+                            {{ user.username }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-cancel" type="button" (click)="showCreateForm = false; projectForm.reset()">
+                    Cancel
+                </button>
+                <button class="btn-submit" type="button" (click)="createProject()" [disabled]="isLoading">
+                    <span *ngIf="!isLoading">Create Project</span>
+                    <span *ngIf="isLoading">Creating...</span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <!-- Edit Project Form -->
+    <div *ngIf="showEditForm" class="edit-form">
+        <h3>Edit Project</h3>
+
+        <form [formGroup]="editProjectForm">
+            <div class="form-group">
+                <label>Project Name *</label>
+                <input type="text" formControlName="name" placeholder="Enter project name">
+                <div *ngIf="editProjectForm.get('name')?.invalid && editProjectForm.get('name')?.touched"
+                    class="validation-error">
+                    Project name is required (min 3 characters)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea formControlName="description" placeholder="Enter project description"></textarea>
+                <div *ngIf="editProjectForm.get('description')?.invalid && editProjectForm.get('description')?.touched"
+                    class="validation-error">
+                    Description cannot exceed 500 characters
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Category *</label>
+                <select formControlName="categorieId" title="Select project category">
+                    <option [value]="null" disabled>Select a category</option>
+                    <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+                </select>
+                <div *ngIf="editProjectForm.get('categorieId')?.invalid && editProjectForm.get('categorieId')?.touched"
+                    class="validation-error">
+                    Category is required
+                </div>
+            </div>
+   <!-- Collaborators Management Section -->
+<div *ngIf="showEditForm" class="collaborators-section">
+  <h4>Manage Collaborators</h4>
+  
+  <!-- Single Search Input -->
+  <div class="collaborator-search-section">
+    <input 
+      type="text" 
+      [(ngModel)]="editCollaboratorSearch" 
+      (input)="onSearchChange()"
+      placeholder="Search users..."
+      class="search-input"
+    >
+  </div>
+
+  <!-- Add Collaborators Section -->
+  <div class="collaborator-add-section">
+    <h5>Available Users to Add</h5>
+    
+    <div class="user-list">
+      <div 
+        *ngFor="let user of filteredAvailableUsers" 
+        class="user-item"
+        (click)="toggleEditCollaborator(user, 'add')"
+      >
+        <div class="user-avatar">{{ user.username | initials }}</div>
+        <div class="user-info">
+          <div class="username">{{ user.username }}</div>
+          <div class="email">{{ user.email }}</div>
+        </div>
+        <div class="user-action">+</div>
+      </div>
+      
+      <div *ngIf="filteredAvailableUsers.length === 0" class="no-users">
+        {{ editCollaboratorSearch ? 'No users found' : 'No users available to add' }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Remove Collaborators Section -->
+  <div class="collaborator-remove-section">
+    <h5>Current Collaborators</h5>
+    
+    <div class="user-list">
+      <div 
+        *ngFor="let user of filteredCurrentCollaborators" 
+        class="user-item"
+        (click)="toggleEditCollaborator(user, 'remove')"
+      >
+        <div class="user-avatar">{{ user.username | initials }}</div>
+        <div class="user-info">
+          <div class="username">{{ user.username }}</div>
+          <div class="email">{{ user.email }}</div>
+        </div>
+        <div class="user-action">−</div>
+      </div>
+      
+      <div *ngIf="filteredCurrentCollaborators.length === 0" class="no-users">
+        {{ editCollaboratorSearch ? 'No collaborators found' : 'No collaborators' }}
+      </div>
+    </div>
+  </div>
+</div>
+
+            
+
+            <div class="form-actions">
+                <button type="button" class="btn-cancel" (click)="cancelEdit()">Cancel</button>
+                <button type="button" class="btn-submit" (click)="updateProject()" [disabled]="isLoading">
+                    <span *ngIf="!isLoading">Update Project</span>
+                    <span *ngIf="isLoading">Updating...</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="loading-indicator">
+        Loading projects...
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+        <div *ngFor="let project of projects" class="project-card"
+            [style.backgroundColor]="getProjectColor(project.id_projet)" (click)="goToProjectTasks(project.id_projet)">
+
+            <div class="card-header">
+                <h3>{{ project.name }}</h3>
+
+                <!-- Action icons only for ADMIN or PROJECT_MANAGER -->
+                <div class="icon-actions" *ngIf="canEditProject(project)">
+
+                    <!-- Update Icon -->
+                    <button type="button" class="icon-btn" (click)="editProject(project); $event.stopPropagation()"
+                        title="Edit project">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path d="M3 17.25V21h3.75l11.04-11.04-3.75-3.75L3 17.25zM20.71 
+                               7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a1 1 
+                               0 0 0-1.41 0l-1.83 1.83 3.75 3.75 
+                               1.83-1.83z" />
+                        </svg>
+                    </button>
+
+                    <!-- Delete Icon -->
+                    <button type="button" class="icon-btn"
+                        (click)="deleteProject(project.id_projet); $event.stopPropagation()" title="Delete project">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 
+                               4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <span class="category-badge">{{ project.categorie?.name }}</span>
+            <p class="description">{{ project.description }}</p>
+
+            <div class="card-footer">
+                <div class="owner-info">
+                    <span class="owner-label">Project Manager :</span>
+                    <span class="owner-name">
+                        {{ project.ownerUsername || currentUsername }}
+                        <span class="owner-you" *ngIf="project.ownerUsername === currentUsername">(You)</span>
+                    </span>
+                </div>
+                <span>{{ project.taskCount || 0 }} tasks</span>
+            </div>
+
+            <div class="collaborators">
+                <span *ngFor="let collab of project.collaborators" class="collaborator-badge">
+                    {{ collab.username | initials }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

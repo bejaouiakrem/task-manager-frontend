@@ -1,0 +1,96 @@
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="avatar-container">
+        <div class="avatar">
+          <span>{{ (profile?.username || 'U')[0] | uppercase }}</span>
+        </div>
+        <h1 class="username">{{ profile?.username }}</h1>
+        <p class="user-role">Task Manager User</p>
+      </div>
+    </div>
+
+    <div class="profile-content">
+      <div class="info-section">
+        <h2 class="section-title">Account Information</h2>
+        
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-content">
+              <div class="info-label">👤 Username</div>
+              <div class="info-value">
+                @if (!isEditing) {
+                  <span title="Your username">{{ profile?.username }}</span>
+                } @else {
+                  <mat-form-field appearance="outline">
+                    <input matInput [(ngModel)]="editableProfile.username" placeholder="Username" title="Username">
+                  </mat-form-field>
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-content">
+              <div class="info-label">📧 Email</div>
+              <div class="info-value">
+                @if (!isEditing) {
+                  <span title="Your email">{{ profile?.email }}</span>
+                } @else {
+                  <mat-form-field appearance="outline">
+                    <input matInput [(ngModel)]="editableProfile.email" placeholder="Email" title="Email">
+                  </mat-form-field>
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-content">
+              <div class="info-label">🔒 Status</div>
+              <div class="info-value">
+                <mat-chip [ngClass]="{
+                  'active-chip': profile?.enabled,
+                  'inactive-chip': !profile?.enabled
+                }">
+                  {{ profile?.enabled ? '🟢 Active' : '🔴 Inactive' }}
+                </mat-chip>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-content">
+              <div class="info-label">📁 Projects</div>
+              <div class="info-value">
+                <div class="project-count" title="Number of assigned projects">{{ profile?.projectCount || 0 }}</div>
+                <div class="project-label">assigned</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-actions">
+      @if (!isEditing) {
+        <button mat-flat-button color="primary" class="action-btn" (click)="toggleEdit()">
+          ✏️ Edit Profile
+        </button>
+      } @else {
+        <button mat-flat-button color="primary" class="action-btn" (click)="saveProfile()">
+          💾 Save Changes
+        </button>
+        <button mat-stroked-button color="warn" class="action-btn" (click)="toggleEdit()">
+          ❌ Cancel
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (isLoading) {
+    <div class="loading-overlay">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  }
+</div>

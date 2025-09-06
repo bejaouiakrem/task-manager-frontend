@@ -1,0 +1,59 @@
+<!-- dashboard.html -->
+<div class="dashboard-container">
+  <h2>Welcome to Your Dashboard</h2>
+
+  <!-- New Projects Section -->
+  <div class="section" *ngIf="newProjects.length > 0">
+    <h3>New Projects Assigned to You</h3>
+    <p>You've been added to these projects but haven't started working on them yet.</p>
+
+    <div class="projects-grid">
+      <div *ngFor="let project of newProjects" class="project-card">
+        <div class="project-header">
+          <h4>{{ project.name }}</h4>
+          <span class="badge new">NEW</span>
+        </div>
+        
+        <p class="project-description">{{ project.description || 'No description' }}</p>
+        
+        <div class="project-meta">
+          <div class="meta-item">
+            <i class="icon">👤</i>
+            <span>Owner: {{ project.ownerUsername }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="icon">📅</i>
+            <span>Added {{ getDaysAgo(project.assignedDate) }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="icon">📋</i>
+            <span>{{ project.totalTasks }} tasks total</span>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <a [routerLink]="['/manage-task', project.id]" class="btn btn-primary">
+            Start Working
+          </a>
+          <button class="btn btn-secondary">View Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="newProjects.length === 0 && !isLoading" class="empty-state">
+    <div class="empty-icon">🎯</div>
+    <h3>No New Projects</h3>
+    <p>You're all caught up! There are no new projects waiting for your attention.</p>
+    
+      <a [routerLink]="['/manage-project']" class="btn btn-primary">Explore All Projects</a>
+    
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading your new projects...</p>
+  </div>
+</div>
