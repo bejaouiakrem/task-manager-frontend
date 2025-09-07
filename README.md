@@ -27,10 +27,15 @@ Angular-based frontend for a complete Task Management System with modern UI/UX a
 BACKEND REPO : 
 
 EMAIL
+    
+     
      akrem.bejaoui@esprit.tn
 
 
      
 LINKEDIN PROFILE
+      
+      
       linkedin.com/in/bejaoui-akrem-a76861364 
+
 
