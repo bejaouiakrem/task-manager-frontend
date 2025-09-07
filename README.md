@@ -24,9 +24,9 @@ Angular-based frontend for a complete Task Management System with modern UI/UX a
 - Angular CLI 20+
 
 🔗 Links
+BACKEND REPO : 
 
-    -Backend Repository
-
-    Email: your-email@example.com
-
-    LinkedIn: [Your LinkedIn Profile]
+EMAIL
+     akrem.bejaoui@esprit.tn
+LINKEDIN PROFILE
+     [Your LinkedIn Profile]
