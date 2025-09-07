@@ -28,5 +28,9 @@ BACKEND REPO :
 
 EMAIL
      akrem.bejaoui@esprit.tn
+
+
+     
 LINKEDIN PROFILE
-     [Your LinkedIn Profile]
+      linkedin.com/in/bejaoui-akrem-a76861364 
+
