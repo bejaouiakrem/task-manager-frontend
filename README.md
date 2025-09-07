@@ -23,19 +23,10 @@ Angular-based frontend for a complete Task Management System with modern UI/UX a
 - npm or yarn
 - Angular CLI 20+
 
-### Installation
+🔗 Links
 
-```bash
-# Clone the repository
-git clone https://github.com/bejaouiakrem/task-manager-frontend.git
+    -Backend Repository
 
-# Navigate to project
-cd task-manager-frontend
+    Email: your-email@example.com
 
-# Install dependencies
-npm install
-
-# Start development server
-ng serve
-
-# Open http://localhost:4200 in your browser
+    LinkedIn: [Your LinkedIn Profile]
