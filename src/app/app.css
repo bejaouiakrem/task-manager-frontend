@@ -1,0 +1,63 @@
+/* App Component - Dark Corporate Theme */
+/* Main layout and container styling */
+
+main {
+  min-height: calc(100vh - 72px);
+  background: var(--bg-primary);
+  padding-top: var(--space-4);
+  position: relative;
+}
+
+/* Container for consistent spacing */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms ease-in, transform 300ms ease-in;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  main {
+    padding-top: var(--space-2);
+  }
+  
+  .container {
+    padding: 0 var(--space-3);
+  }
+}
+
+/* Print styles */
+@media print {
+  main {
+    background: white;
+    color: black;
+  }
+  
+  .no-print {
+    display: none;
+  }
+}

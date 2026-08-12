@@ -1,0 +1,193 @@
+/* Design Tokens - Dark Corporate Theme */
+/* Professional SaaS task manager design system */
+
+:root {
+  /* ========== COLOR TOKENS ========== */
+  
+  /* Base surfaces - Dark theme foundation */
+  --surface-0: #121212;    /* Deep dark background */
+  --surface-1: #1E1E1E;    /* Card surfaces, elevated backgrounds */
+  --surface-2: #252525;    /* Higher elevation surfaces */
+  --surface-3: #2D2D2D;    /* Highest elevation, modal backgrounds */
+  
+  /* Primary brand - Corporate blue palette */
+  --primary-50: #E6F2FF;
+  --primary-100: #CCE4FF;
+  --primary-200: #99C9FF;
+  --primary-300: #66ADFF;
+  --primary-400: #3392FF;
+  --primary-500: #0066CC;   /* Main brand color */
+  --primary-600: #0052A3;
+  --primary-700: #003D7A;
+  --primary-800: #002952;
+  --primary-900: #001429;
+  
+  /* Neutral colors - Text and borders */
+  --neutral-100: #FFFFFF;   /* Pure white text */
+  --neutral-200: #E0E0E0;   /* Light text, headings */
+  --neutral-300: #B0B0B0;   /* Secondary text, labels */
+  --neutral-400: #707070;   /* Disabled text, placeholders */
+  --neutral-500: #505050;   /* Borders, dividers */
+  --neutral-600: #404040;   /* Subtle borders */
+  --neutral-700: #303030;   /* Strong borders */
+  --neutral-800: #202020;   /* Dark backgrounds */
+  --neutral-900: #101010;   /* Deep backgrounds */
+  
+  /* Semantic colors - Status, alerts, feedback */
+  --success-50: #ECFDF5;
+  --success-100: #D1FAE5;
+  --success-200: #A7F3D0;
+  --success-300: #6EE7B7;
+  --success-400: #34D399;
+  --success-500: #10B981;   /* Success green */
+  --success-600: #059669;
+  --success-700: #047857;
+  --success-800: #065F46;
+  --success-900: #064E3B;
+  
+  --warning-50: #FFFBEB;
+  --warning-100: #FEF3C7;
+  --warning-200: #FDE68A;
+  --warning-300: #FCD34D;
+  --warning-400: #FBBF24;
+  --warning-500: #F59E0B;   /* Warning amber */
+  --warning-600: #D97706;
+  --warning-700: #B45309;
+  --warning-800: #92400E;
+  --warning-900: #78350F;
+  
+  --danger-50: #FEF2F2;
+  --danger-100: #FEE2E2;
+  --danger-200: #FECACA;
+  --danger-300: #FCA5A5;
+  --danger-400: #F87171;
+  --danger-500: #EF4444;    /* Danger red */
+  --danger-600: #DC2626;
+  --danger-700: #B91C1C;
+  --danger-800: #991B1B;
+  --danger-900: #7F1D1D;
+  
+  --info-50: #EFF6FF;
+  --info-100: #DBEAFE;
+  --info-200: #BFDBFE;
+  --info-300: #93C5FD;
+  --info-400: #60A5FA;
+  --info-500: #3B82F6;      /* Info blue */
+  --info-600: #2563EB;
+  --info-700: #1D4ED8;
+  --info-800: #1E40AF;
+  --info-900: #1E3A8A;
+  
+  /* ========== TYPOGRAPHY TOKENS ========== */
+  
+  /* Font families */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  
+  /* Font sizes - 8px baseline (0.5rem) */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Line heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* ========== SPACING TOKENS ========== */
+  /* Based on 8px grid system */
+  
+  --space-0: 0;            /* 0px */
+  --space-1: 0.25rem;      /* 4px */
+  --space-2: 0.5rem;       /* 8px */
+  --space-3: 0.75rem;      /* 12px */
+  --space-4: 1rem;         /* 16px */
+  --space-5: 1.5rem;       /* 24px */
+  --space-6: 2rem;         /* 32px */
+  --space-8: 3rem;         /* 48px */
+  --space-10: 4rem;        /* 64px */
+  --space-12: 5rem;        /* 80px */
+  --space-16: 6rem;        /* 96px */
+  
+  /* ========== BORDER RADIUS ========== */
+  
+  --radius-none: 0;
+  --radius-sm: 0.25rem;    /* 4px */
+  --radius-md: 0.5rem;     /* 8px */
+  --radius-lg: 0.75rem;    /* 12px */
+  --radius-xl: 1rem;       /* 16px */
+  --radius-full: 9999px;
+  
+  /* ========== SHADOWS ========== */
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.25);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  
+  /* ========== TRANSITIONS ========== */
+  
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* ========== Z-INDEX ========== */
+  
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  
+  /* ========== OPACITY ========== */
+  
+  --opacity-0: 0;
+  --opacity-25: 0.25;
+  --opacity-50: 0.5;
+  --opacity-75: 0.75;
+  --opacity-100: 1;
+}
+
+/* Semantic aliases for common use cases */
+:root {
+  /* Background colors */
+  --bg-primary: var(--surface-0);
+  --bg-secondary: var(--surface-1);
+  --bg-tertiary: var(--surface-2);
+  
+  /* Text colors */
+  --text-primary: var(--neutral-100);
+  --text-secondary: var(--neutral-200);
+  --text-tertiary: var(--neutral-300);
+  --text-muted: var(--neutral-400);
+  
+  /* Border colors */
+  --border-primary: var(--neutral-500);
+  --border-secondary: var(--neutral-600);
+  --border-focus: var(--primary-500);
+  
+  /* Interactive colors */
+  --interactive-primary: var(--primary-500);
+  --interactive-primary-hover: var(--primary-400);
+  --interactive-primary-active: var(--primary-600);
+  
+  /* Status colors */
+  --status-success: var(--success-500);
+  --status-warning: var(--warning-500);
+  --status-danger: var(--danger-500);
+  --status-info: var(--info-500);
+}

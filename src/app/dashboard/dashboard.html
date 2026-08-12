@@ -1,0 +1,80 @@
+<!-- Dashboard Component - Dark Corporate Theme -->
+<div class="dashboard-container">
+  <h2>Welcome to Your Dashboard</h2>
+
+  <!-- New Projects Section -->
+  <div class="section" *ngIf="newProjects.length > 0">
+    <h3>New Projects Assigned to You</h3>
+    <p>You've been added to these projects but haven't started working on them yet.</p>
+
+    <div class="projects-grid">
+      <div *ngFor="let project of newProjects" class="project-card" tabindex="0">
+        <div class="project-header">
+          <h4>{{ project.name }}</h4>
+          <span class="badge new">NEW</span>
+        </div>
+        
+        <p class="project-description">{{ project.description || 'No description available' }}</p>
+        
+        <div class="project-meta">
+          <div class="meta-item">
+            <i class="icon bi bi-person"></i>
+            <span>Owner: {{ project.ownerUsername }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="icon bi bi-calendar"></i>
+            <span>Added {{ getDaysAgo(project.assignedDate) }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="icon bi bi-list-task"></i>
+            <span>{{ project.totalTasks }} tasks total</span>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <a [routerLink]="['/manage-task', project.id]" class="card-btn card-btn-primary">
+            <i class="bi bi-play-circle"></i>
+            <span>Start Working</span>
+          </a>
+          <button class="card-btn card-btn-secondary">
+            <i class="bi bi-eye"></i>
+            <span>View Details</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="newProjects.length === 0 && !isLoading" class="empty-state">
+    <div class="empty-icon">
+      <i class="bi bi-check-circle"></i>
+    </div>
+    <h3>No New Projects</h3>
+    <p>You're all caught up! There are no new projects waiting for your attention.</p>
+    
+    <a [routerLink]="['/manage-project']" class="card-btn card-btn-primary">
+      <i class="bi bi-folder"></i>
+      <span>Explore All Projects</span>
+    </a>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading your new projects...</p>
+  </div>
+
+  <!-- Skeleton Loading (optional) -->
+  <div *ngIf="false" class="projects-grid">
+    <div class="project-card">
+      <div class="skeleton skeleton-title"></div>
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text short"></div>
+      <div class="project-actions">
+        <div class="skeleton skeleton-button"></div>
+        <div class="skeleton skeleton-button"></div>
+      </div>
+    </div>
+  </div>
+</div>
