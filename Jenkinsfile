@@ -16,7 +16,7 @@ pipeline {
         stage('Build Angular App') {
             steps {
                 // Production build – optimises and minifies
-                sh 'npm run build -- --prod'
+                sh 'npm run build -- --configuration production'
             }
         }
         // Optional: Add unit tests (if you have them)
