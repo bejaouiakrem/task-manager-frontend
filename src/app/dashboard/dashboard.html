@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <!-- Dashboard Component - Dark Corporate Theme -->
+=======
+<!-- dashboard.html -->
+>>>>>>> 777dbe163539b26d7bf1b60a2d763ecbdeebd8c7
 <div class="dashboard-container">
   <h2>Welcome to Your Dashboard</h2>
 
@@ -8,12 +12,17 @@
     <p>You've been added to these projects but haven't started working on them yet.</p>
 
     <div class="projects-grid">
+<<<<<<< HEAD
       <div *ngFor="let project of newProjects" class="project-card" tabindex="0">
+=======
+      <div *ngFor="let project of newProjects" class="project-card">
+>>>>>>> 777dbe163539b26d7bf1b60a2d763ecbdeebd8c7
         <div class="project-header">
           <h4>{{ project.name }}</h4>
           <span class="badge new">NEW</span>
         </div>
         
+<<<<<<< HEAD
         <p class="project-description">{{ project.description || 'No description available' }}</p>
         
         <div class="project-meta">
@@ -27,11 +36,27 @@
           </div>
           <div class="meta-item">
             <i class="icon bi bi-list-task"></i>
+=======
+        <p class="project-description">{{ project.description || 'No description' }}</p>
+        
+        <div class="project-meta">
+          <div class="meta-item">
+            <i class="icon">👤</i>
+            <span>Owner: {{ project.ownerUsername }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="icon">📅</i>
+            <span>Added {{ getDaysAgo(project.assignedDate) }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="icon">📋</i>
+>>>>>>> 777dbe163539b26d7bf1b60a2d763ecbdeebd8c7
             <span>{{ project.totalTasks }} tasks total</span>
           </div>
         </div>
 
         <div class="project-actions">
+<<<<<<< HEAD
           <a [routerLink]="['/manage-task', project.id]" class="card-btn card-btn-primary">
             <i class="bi bi-play-circle"></i>
             <span>Start Working</span>
@@ -40,6 +65,12 @@
             <i class="bi bi-eye"></i>
             <span>View Details</span>
           </button>
+=======
+          <a [routerLink]="['/manage-task', project.id]" class="btn btn-primary">
+            Start Working
+          </a>
+          <button class="btn btn-secondary">View Details</button>
+>>>>>>> 777dbe163539b26d7bf1b60a2d763ecbdeebd8c7
         </div>
       </div>
     </div>
@@ -47,6 +78,7 @@
 
   <!-- Empty State -->
   <div *ngIf="newProjects.length === 0 && !isLoading" class="empty-state">
+<<<<<<< HEAD
     <div class="empty-icon">
       <i class="bi bi-check-circle"></i>
     </div>
@@ -57,6 +89,14 @@
       <i class="bi bi-folder"></i>
       <span>Explore All Projects</span>
     </a>
+=======
+    <div class="empty-icon">🎯</div>
+    <h3>No New Projects</h3>
+    <p>You're all caught up! There are no new projects waiting for your attention.</p>
+    
+      <a [routerLink]="['/manage-project']" class="btn btn-primary">Explore All Projects</a>
+    
+>>>>>>> 777dbe163539b26d7bf1b60a2d763ecbdeebd8c7
   </div>
 
   <!-- Loading State -->
@@ -64,6 +104,7 @@
     <div class="spinner"></div>
     <p>Loading your new projects...</p>
   </div>
+<<<<<<< HEAD
 
   <!-- Skeleton Loading (optional) -->
   <div *ngIf="false" class="projects-grid">
@@ -77,4 +118,6 @@
       </div>
     </div>
   </div>
+=======
+>>>>>>> 777dbe163539b26d7bf1b60a2d763ecbdeebd8c7
 </div>

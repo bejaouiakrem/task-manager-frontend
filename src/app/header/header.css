@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Header Component - Dark Corporate Theme */
 /* Professional navigation with subtle gradients and effects */
 
@@ -197,11 +198,49 @@
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-primary);
   padding-left: var(--space-5);
+=======
+/* src/app/header/header.component.css */
+.navbar {
+  padding: 0.8rem 1rem; 
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+.initials {
+  width: 32px;
+  height: 32px;
+  font-weight: 600;
+  color: white;
+}
+
+.dropdown-toggle {
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+}
+
+.dropdown-toggle::after {
+  margin-left: 0.5rem;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+>>>>>>> 777dbe163539b26d7bf1b60a2d763ecbdeebd8c7
 }
 
 .dropdown-item i {
   width: 20px;
   text-align: center;
+<<<<<<< HEAD
   color: var(--text-tertiary);
 }
 
@@ -341,4 +380,40 @@
 .dropdown-toggle:focus-visible {
   outline: 2px solid var(--border-focus);
   outline-offset: 2px;
+=======
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background: rgba(255,255,255,0.3);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 992px) {
+  .navbar-collapse {
+    padding-top: 1rem;
+  }
+  
+  .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+  }
+>>>>>>> 777dbe163539b26d7bf1b60a2d763ecbdeebd8c7
 }
