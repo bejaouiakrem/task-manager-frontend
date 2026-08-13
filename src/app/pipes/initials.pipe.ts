@@ -5,11 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true  // This makes it a standalone pipe
 })
 export class InitialsPipe implements PipeTransform {
-<<<<<<< HEAD
   transform(value: string | null | undefined): string {
-=======
-  transform(value: string): string {
->>>>>>> 777dbe163539b26d7bf1b60a2d763ecbdeebd8c7
     if (!value) return '';
     
     return value
