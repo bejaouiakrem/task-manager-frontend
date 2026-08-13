@@ -7,34 +7,34 @@
           <div class="row g-0">
             <!-- Image Column -->
             <div class="col-md-6 d-none d-md-block">
-              <img 
-                src="../../../assets/images/task.gif" 
+              <img
+                src="../../../assets/images/task.gif"
                 alt="Task Management Illustration"
                 class="img-fluid h-100 object-fit-cover">
             </div>
-            
+
             <!-- Form Column -->
             <div class="col-md-6">
               <div class="card-header bg-primary text-white py-4">
-                <h1 class="h4 text-center mb-0">Welcome to TaskFlow</h1>
+                <h1 class="h4 text-center mb-0">Welcome to TaskFlow !!</h1>
               </div>
-              
+
               <div class="card-body p-4">
                 <h2 class="h5 mb-4 text-center">Sign in to your account</h2>
-                
+
                 @if (errorMessage) {
                   <div class="alert alert-danger">
                     {{ errorMessage }}
                   </div>
                 }
-                
+
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                   <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input 
-                      type="text" 
-                      class="form-control" 
-                      id="username" 
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
                       formControlName="username"
                       [class.is-invalid]="loginForm.controls.username.invalid && loginForm.controls.username.touched"
                       placeholder="Enter your username">
@@ -44,13 +44,13 @@
                       }
                     </div>
                   </div>
-                  
+
                   <div class="mb-4">
                     <label for="password" class="form-label">Password</label>
-                    <input 
-                      type="password" 
-                      class="form-control" 
-                      id="password" 
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
                       formControlName="password"
                       [class.is-invalid]="loginForm.controls.password.invalid && loginForm.controls.password.touched"
                       placeholder="••••••••">
@@ -63,10 +63,10 @@
                       }
                     </div>
                   </div>
-                  
+
                   <div class="d-grid mb-3">
-                    <button 
-                      type="submit" 
+                    <button
+                      type="submit"
                       class="btn btn-primary"
                       [disabled]="loginForm.invalid || loading">
                       @if (loading) {
@@ -77,13 +77,13 @@
                       }
                     </button>
                   </div>
-                  
+
                   <div class="text-center mb-3">
                     <a routerLink="/forgot-password" class="text-decoration-none small">Forgot your password?</a>
                   </div>
-                  
+
                   <div class="text-center border-top pt-4">
-                    <p class="mb-0 small">Don't have an account? 
+                    <p class="mb-0 small">Don't have an account?
                       <a routerLink="/signup" class="text-decoration-none fw-medium">Sign up</a>
                     </p>
                   </div>

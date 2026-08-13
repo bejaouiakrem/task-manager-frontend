@@ -12,7 +12,7 @@ import { InitialsPipe } from '../pipes/initials.pipe';
   standalone: true,
   imports: [CommonModule, RouterLink, InitialsPipe],
   templateUrl: './header.html',
-  styleUrls: ['./header.css']
+  styleUrls: ['./header.css'],
 })
 export class Header implements OnInit, OnDestroy {
   isLoggedIn = false;
@@ -22,12 +22,12 @@ export class Header implements OnInit, OnDestroy {
   private authSub!: Subscription;
 
   constructor(
-    private authService: AuthService, 
-    private router: Router
+    private authService: AuthService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.authSub = this.authService.isLoggedIn$.subscribe(loggedIn => {
+    this.authSub = this.authService.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
       if (loggedIn) {
         this.username = localStorage.getItem('username');
@@ -74,3 +74,4 @@ export class Header implements OnInit, OnDestroy {
     this.dropdownOpen = false;
   }
 }
+
